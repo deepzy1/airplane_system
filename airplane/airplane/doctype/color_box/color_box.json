@@ -1,0 +1,60 @@
+{
+ "actions": [],
+ "allow_guest_to_view": 1,
+ "allow_rename": 1,
+ "autoname": "prompt",
+ "creation": "2025-03-04 15:24:41.284789",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "color",
+  "published",
+  "route"
+ ],
+ "fields": [
+  {
+   "fieldname": "color",
+   "fieldtype": "Color",
+   "label": "color"
+  },
+  {
+   "default": "0",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "label": "published"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "route"
+  }
+ ],
+ "has_web_view": 1,
+ "index_web_pages_for_search": 1,
+ "is_published_field": "published",
+ "links": [],
+ "modified": "2025-03-04 15:30:19.042248",
+ "modified_by": "Administrator",
+ "module": "Airplane",
+ "name": "color_box",
+ "naming_rule": "Set by user",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "route": "colorr",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
