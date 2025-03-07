@@ -1,41 +1,162 @@
 {% extends "templates/web.html" %}
 
 {% block page_content %}
-<h2>{{ title }}</h2>
 
 {%  set src_airport = frappe.get_doc("Airport",doc.source_airport) %}
 {%  set dst_airport = frappe.get_doc("Airport",doc.destination_airport)%}
 
-{{src_airport.city}} to
-{{dst_airport.city}}
 
-<div class="card">
-    <div class="card-header">
-     <h3> Flight Details</h3>
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!-- FontAwesome for Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="assets/airplane/flights.css">
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+    }
+    .flight-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .flight-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .flight-header h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #007fff;
+    }
+    .flight-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #f1f3f5;
+        border-radius: 8px;
+    }
+    .flight-details .icon {
+        font-size: 1.5rem;
+        color: #007fff;
+        margin-right: 10px;
+    }
+    .flight-details .info {
+        flex: 1;
+    }
+    .flight-details .info h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+    }
+    .flight-details .info p {
+        font-size: 0.9rem;
+        color: #777;
+        margin: 0;
+    }
+    .btn-book {
+        background-color: #007fff;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease;
+    }
+    .btn-book:hover {
+        background-color: #005bb5;
+    }
+    .flight-route {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .flight-route h3 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+    }
+    .flight-route p {
+        font-size: 1rem;
+        color: #777;
+        margin: 0;
+    }
+</style>
+
+<div class="flight-container">
+    <!-- Flight Header -->
+    <div class="flight-header">
+        <h2>{{ title }}</h2>
     </div>
-    <div class="card-body">
-      <h5 class="card-title">{{doc.airplane}}</h5>
-      <h5 class="card-title">{{doc.source_airport}} to {{doc.source_airport}}</h5>
-      <h5 class="card-title">{{doc.date_of_departure}} || {{doc.time_od_deparature}}</h5>
-      <h5 class="card-title">Duration :{{frappe.utils.format_duration(doc.duration)}}</h5>
-      <!-- <h5>{{frappe.utils.format_duration(doc.duration)}}</h5> -->
-      
-      <a href="/book-flight-ticket" class="btn btn-primary2">Book Flight</a>
-      <!-- <a href="/book-flight-ticket?airplane={{ doc.airplane }}" class="btn btn-primary2">Book Flight Directly</a> -->
 
+    <!-- Flight Route -->
+    <div class="flight-route">
+        <h3><i class="fas fa-route"></i> Flight Route</h3>
+        <p>{{ src_airport.city }} <i class="fas fa-arrow-right"></i> {{ dst_airport.city }}</p>
     </div>
-  </div>
 
-  <style>
-    .btn-primary2 {
-background-color: #007fff;
-color: var(--neutral);
-white-space: nowrap;
---icon-stroke: currentColor;
---icon-fill-bg: var(--btn-primary);
-}
-  </style>
-  <link rel="stylesheet" href="assests/airplane/flights.css">
+    <!-- Flight Details -->
+    <div class="flight-details">
+        <div class="icon">
+            <i class="fas fa-plane"></i>
+        </div>
+        <div class="info">
+            <h5>Airplane</h5>
+            <p>{{ doc.airplane }}</p>
+        </div>
+    </div>
+
+    <div class="flight-details">
+        <div class="icon">
+            <i class="fas fa-map-marked-alt"></i>
+        </div>
+        <div class="info">
+            <h5>Route</h5>
+            <p>{{ doc.source_airport }} to {{ doc.destination_airport }}</p>
+        </div>
+    </div>
+
+    <div class="flight-details">
+        <div class="icon">
+            <i class="fas fa-calendar-day"></i>
+        </div>
+        <div class="info">
+            <h5>Departure</h5>
+            <p>{{ doc.date_of_departure }} at {{ doc.time_od_deparature }}</p>
+        </div>
+    </div>
+
+    <div class="flight-details">
+        <div class="icon">
+            <i class="fas fa-clock"></i>
+        </div>
+        <div class="info">
+            <h5>Duration</h5>
+            <p>{{ frappe.utils.format_duration(doc.duration) }}</p>
+        </div>
+    </div>
+
+    <!-- Book Flight Button -->
+    <div class="text-center mt-4">
+        <a href="/book-flight-ticket" class="btn btn-book">
+            <i class="fas fa-ticket-alt"></i> Book Flight
+        </a>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 {% endblock %}
-
-<!-- this is a sample default web page template -->

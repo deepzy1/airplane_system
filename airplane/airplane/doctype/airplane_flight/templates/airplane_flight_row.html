@@ -6,34 +6,104 @@
 	{%  set src_airport = frappe.get_doc("Airport",doc.source_airport) %}
 {%  set dst_airport = frappe.get_doc("Airport",doc.destination_airport)%}
 
-{{src_airport.city}} to
-{{dst_airport.city}}
 
-	
-													
-	
 
-	<div class="card text-center">
-		<div class="card-header">
-		  {{doc.airplane}}
-		</div>
-		<div class="card-body">
-		  <h5 class="card-title">{{doc.source_airport}} To {{doc.destination_airport}}</h5>
-		  <p class="card-text">{{doc.date_of_departure}} || {{doc.time_od_deparature}} || {{doc.duration}}</p>
-		  <a href="{{ doc.route }}" class="btn btn-primary2">View Flight</a>
-		</div>
-		
-	  </div>
 
-	  <style>
-		.btn-primary2 {
-    background-color: #007fff;
-    color: var(--neutral);
-    white-space: nowrap;
-    --icon-stroke: currentColor;
-    --icon-fill-bg: var(--btn-primary);
-}
-	  </style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/airplane/flights.css">
+    <style>
+        .card {
+            margin: 20px auto;
+            max-width: 600px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .card-header {
+            background-color: #007fff;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: bold;
+            border-radius: 10px 10px 0 0;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .card-text {
+            font-size: 1rem;
+            color: #555;
+        }
+        .btn-primary2 {
+            background-color: #007fff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary2:hover {
+            background-color: #005bb5;
+        }
+        .flight-route {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .flight-details {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-plane"></i> {{ doc.airplane }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ doc.source_airport }} <i class="fas fa-arrow-right"></i> {{ doc.destination_airport }}</h5>
+                        <p class="card-text">{{ doc.date_of_departure }} || {{ doc.time_od_deparature }} || {{ doc.duration }}</p>
+                        <div class="flight-route">
+                            <i class="fas fa-map-marker-alt"></i> {{ src_airport.city }} to {{ dst_airport.city }}
+                        </div>
+                        <div class="flight-details">
+                            <i class="fas fa-info-circle"></i> Flight Duration: {{ doc.duration }}
+                        </div>
+                        <a href="{{ doc.route }}" class="btn btn-primary2">View Flight Details <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 
 </div>
 <!-- this is a sample default list template -->
