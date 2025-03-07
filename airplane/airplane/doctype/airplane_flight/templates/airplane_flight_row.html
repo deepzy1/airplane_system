@@ -1,4 +1,39 @@
 <div>
-	<a href="{{ doc.route }}">{{ doc.title or doc.name }}</a>
+	<link rel="stylesheet" href="assets/airplane/flights.css">
+	<!-- <a href="{{ doc.route }}">{{ doc.title or doc.name }}</a>
+	<h1>{{doc.source_airport}}</h1> -->
+
+	{%  set src_airport = frappe.get_doc("Airport",doc.source_airport) %}
+{%  set dst_airport = frappe.get_doc("Airport",doc.destination_airport)%}
+
+{{src_airport.city}} to
+{{dst_airport.city}}
+
+	
+													
+	
+
+	<div class="card text-center">
+		<div class="card-header">
+		  {{doc.airplane}}
+		</div>
+		<div class="card-body">
+		  <h5 class="card-title">{{doc.source_airport}} To {{doc.destination_airport}}</h5>
+		  <p class="card-text">{{doc.date_of_departure}} || {{doc.time_od_deparature}} || {{doc.duration}}</p>
+		  <a href="{{ doc.route }}" class="btn btn-primary2">View Flight</a>
+		</div>
+		
+	  </div>
+
+	  <style>
+		.btn-primary2 {
+    background-color: #007fff;
+    color: var(--neutral);
+    white-space: nowrap;
+    --icon-stroke: currentColor;
+    --icon-fill-bg: var(--btn-primary);
+}
+	  </style>
+
 </div>
 <!-- this is a sample default list template -->

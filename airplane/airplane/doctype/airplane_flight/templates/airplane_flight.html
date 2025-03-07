@@ -1,7 +1,41 @@
 {% extends "templates/web.html" %}
 
 {% block page_content %}
-<h1>{{ title }}</h1>
+<h2>{{ title }}</h2>
+
+{%  set src_airport = frappe.get_doc("Airport",doc.source_airport) %}
+{%  set dst_airport = frappe.get_doc("Airport",doc.destination_airport)%}
+
+{{src_airport.city}} to
+{{dst_airport.city}}
+
+<div class="card">
+    <div class="card-header">
+     <h3> Flight Details</h3>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{doc.airplane}}</h5>
+      <h5 class="card-title">{{doc.source_airport}} to {{doc.source_airport}}</h5>
+      <h5 class="card-title">{{doc.date_of_departure}} || {{doc.time_od_deparature}}</h5>
+      <h5 class="card-title">Duration :{{frappe.utils.format_duration(doc.duration)}}</h5>
+      <!-- <h5>{{frappe.utils.format_duration(doc.duration)}}</h5> -->
+      
+      <a href="/book-flight-ticket" class="btn btn-primary2">Book Flight</a>
+      <!-- <a href="/book-flight-ticket?airplane={{ doc.airplane }}" class="btn btn-primary2">Book Flight Directly</a> -->
+
+    </div>
+  </div>
+
+  <style>
+    .btn-primary2 {
+background-color: #007fff;
+color: var(--neutral);
+white-space: nowrap;
+--icon-stroke: currentColor;
+--icon-fill-bg: var(--btn-primary);
+}
+  </style>
+  <link rel="stylesheet" href="assests/airplane/flights.css">
 {% endblock %}
 
 <!-- this is a sample default web page template -->

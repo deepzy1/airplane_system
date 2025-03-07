@@ -1,14 +1,18 @@
 {
  "actions": [],
+ "allow_guest_to_view": 1,
  "allow_rename": 1,
  "autoname": "prompt",
  "creation": "2025-02-21 12:21:34.981520",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "headquarters",
   "founding_year",
   "customer_number",
-  "headquarters"
+  "website",
+  "route",
+  "published"
  ],
  "fields": [
   {
@@ -26,16 +30,35 @@
    "fieldname": "headquarters",
    "fieldtype": "Data",
    "label": "Headquarters"
+  },
+  {
+   "default": "https://www.goindigo.in/",
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "label": "Website"
+  },
+  {
+   "default": "https://www.goindigo.in/",
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "route"
+  },
+  {
+   "default": "0",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "label": "published"
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_published_field": "published",
  "links": [
   {
    "link_doctype": "Airplane",
    "link_fieldname": "Airline"
   }
  ],
- "modified": "2025-02-21 14:34:48.506161",
+ "modified": "2025-03-07 12:34:31.394551",
  "modified_by": "Administrator",
  "module": "Airplane",
  "name": "Airline",
