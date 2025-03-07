@@ -10,7 +10,6 @@
   "headquarters",
   "founding_year",
   "customer_number",
-  "website",
   "route",
   "published"
  ],
@@ -32,13 +31,6 @@
    "label": "Headquarters"
   },
   {
-   "default": "https://www.goindigo.in/",
-   "fieldname": "website",
-   "fieldtype": "Data",
-   "label": "Website"
-  },
-  {
-   "default": "https://www.goindigo.in/",
    "fieldname": "route",
    "fieldtype": "Data",
    "label": "route"
@@ -50,6 +42,7 @@
    "label": "published"
   }
  ],
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "is_published_field": "published",
  "links": [
@@ -58,7 +51,7 @@
    "link_fieldname": "Airline"
   }
  ],
- "modified": "2025-03-07 12:34:31.394551",
+ "modified": "2025-03-07 12:49:28.099313",
  "modified_by": "Administrator",
  "module": "Airplane",
  "name": "Airline",

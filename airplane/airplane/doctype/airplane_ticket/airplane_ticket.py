@@ -10,7 +10,7 @@ class AirplaneTicket(Document):
 
 	def before_save(self):
 		self.get_total_price()
-		self.seat= self.assign_seat()
+		# self.seat= self.assign_seat()
 
 	def before_submit(self):
 		check_status=self.validate()
